@@ -1,0 +1,139 @@
+.landing__page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.card__fields--container {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  align-items: center;
+}
+
+.card__container {
+  width: 23rem;
+  height: 12.5rem;
+  border-radius: 1rem;
+  background-color: rgb(128, 128, 128);
+  perspective: 1000px;
+  background-color: transparent;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.space__around {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.chip__img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.credit-card--type {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.centered {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__number {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+.validity__cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.validity__text {
+  color: rgb(224, 224, 224);
+  font-size: 0.7rem;
+  margin-bottom: 0.2rem;
+}
+
+.validity__date {
+  font-size: 1.2rem;
+}
+
+.user__name {
+  font-size: 1.3rem;
+}
+
+/* Card Flip Animation */
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #bbb;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.flip__animation--card {
+  transform: rotateY(180deg);
+}
+
+/* End of animation */
+
+.black__div {
+  width: 100%;
+  height: 3rem;
+  background-color: #000;
+  margin-top: 1.2rem;
+}
+
+.cvc__container {
+  width: 63%;
+  margin-top: 0.7rem;
+  height: 2.6rem;
+  margin-left: 1rem;
+  background-color: rgb(248, 240, 240);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.cvc__orange--line {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(235, 185, 21);
+}
