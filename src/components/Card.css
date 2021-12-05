@@ -4,7 +4,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
 }
 
 .card__fields--container {
@@ -49,6 +55,9 @@
   font-size: 2rem;
   color: #fff;
 }
+.credit-card--type img {
+  height: 2rem;
+}
 
 .centered {
   width: 80%;
@@ -78,11 +87,15 @@
 }
 
 .validity__date {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .user__name {
   font-size: 1.3rem;
+
+  max-width: 14rem;
+  max-height: 3rem;
+  overflow: hidden;
 }
 
 /* Card Flip Animation */
@@ -130,10 +143,73 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: relative;
 }
 
 .cvc__orange--line {
   width: 100%;
   height: 1px;
   background-color: rgb(235, 185, 21);
+}
+
+.cvc__value {
+  position: absolute;
+  color: #000;
+  right: 0.3rem;
+  top: 0.7rem;
+  font-size: 1.1rem;
+}
+
+.save__button {
+  width: 97%;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  border: 1px solid rgb(24, 143, 212);
+  cursor: pointer;
+  background-color: rgb(24, 143, 212);
+  transition: all 0.3s;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.save__button:hover {
+  transform: scale(0.96);
+}
+
+/* MasterCard */
+.master {
+  background: linear-gradient(to right, rgb(252, 144, 72) 50%, transparent 0);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: makeItfadeIn 1s forwards;
+}
+
+/* Visa */
+.visa {
+  background: linear-gradient(to right, rgb(20, 103, 199) 50%, transparent 0);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: makeItfadeIn 1s forwards;
+}
+
+@keyframes makeItfadeIn {
+  100% {
+    background-position: left;
+  }
+}
+
+.errors__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.error__span {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
 }

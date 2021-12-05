@@ -1,20 +1,15 @@
-import React from "react"
-import "./App.css"
-import Card from "./components/Card.js"
+import React from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
 
-const initialState = {
-  number: "",
-  name: "YOUR NAME HERE",
-  expiry: "222",
-  CVC: "",
-}
+import AddCard from "./pages/AddCard";
 
 const App = () => {
-  const [type, setType] = React.useState("Visa")
-  const [cardDetails, setCardDetails] = React.useState(initialState)
-  const [front, setFront] = React.useState(true)
+  return (
+    <Routes>
+      <Route exact path="/add-card" element={<AddCard />} />
+    </Routes>
+  );
+};
 
-  return <Card type={type} setCardDetails={setCardDetails} cardDetails={cardDetails} front={front} setFront={setFront} />
-}
-
-export default App
+export default App;
