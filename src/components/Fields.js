@@ -1,35 +1,57 @@
-import React from "react";
-import { number } from "../utils/utils";
-import "./Fields.css";
+import React from "react"
+import { number } from "../utils/utils"
+import "./Fields.css"
+import { useNavigate } from "react-router-dom"
 
-const Fields = ({
-  setFront,
-  cardDetails,
-  setCardDetails,
-  type,
-  errors,
-  setErrors,
-}) => {
+const Fields = ({ setFront, cardDetails, setCardDetails, type, errors, setErrors }) => {
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (window) {
-      let array = JSON.parse(localStorage.getItem("cards")) || [];
-      array.push({ ...cardDetails, type });
-      localStorage.setItem("cards", JSON.stringify(array));
+    e.preventDefault()
+    let localErr = false
+    if (errors.length > 0) return
+    if (cardDetails.number.length < 16) {
+      setErrors((err) => [...err, { err: "The card must have 16 numbers!" }])
+      localErr = true
     }
-  };
+    if (cardDetails.name.length < 2) {
+      setErrors((err) => [...err, { err: "Please enter a valid name!" }])
+      localErr = true
+    }
+    if (cardDetails.expiry.length < 4) {
+      setErrors((err) => [...err, { err: "Please enter a valid date!" }])
+      localErr = true
+    }
+    if (cardDetails.CVC.length < 3) {
+      setErrors((err) => [...err, { err: "The CVC must have at least 3 numbers!" }])
+      localErr = true
+    }
+
+    if (window && !localErr) {
+      let array = JSON.parse(localStorage.getItem("cards")) || []
+      array.push({ ...cardDetails, type })
+      localStorage.setItem("cards", JSON.stringify(array))
+      setCardDetails({
+        number: "",
+        name: "",
+        expiry: "",
+        CVC: "",
+      })
+      navigate("/")
+    }
+  }
 
   const handleChange = (e) => {
-    setCardDetails((v) => ({ ...v, [e.target.name]: e.target.value }));
-  };
+    setErrors([])
+    setCardDetails((v) => ({ ...v, [e.target.name]: e.target.value }))
+  }
 
   return (
     <form className="forms__container" onSubmit={(e) => handleSubmit(e)}>
       <input
         onKeyPress={(event) => {
           if (!/[0-9]/.test(event.key)) {
-            event.preventDefault();
+            event.preventDefault()
           }
         }}
         maxLength="16"
@@ -38,15 +60,13 @@ const Fields = ({
         name="number"
         placeholder="Card Number"
         className="input__field"
-        onBlur={() =>
-          cardDetails.number < 16 &&
-          setErrors((err) => [
-            ...err,
-            { err: "The card must have 16 numbers!" },
-          ])
-        }
       />
       <input
+        onKeyPress={(event) => {
+          if (!/[A-Za-z_ ]/.test(event.key)) {
+            event.preventDefault()
+          }
+        }}
         placeholder="Name"
         name="name"
         value={cardDetails.name}
@@ -55,18 +75,24 @@ const Fields = ({
       />
       <div className="two__fields--cont">
         <input
+          onKeyPress={(event) => {
+            if (!/[0-9]/.test(event.key)) {
+              event.preventDefault()
+            }
+          }}
           placeholder="Valid Thru"
           name="expiry"
           maxLength="4"
           value={cardDetails.expiry}
           onChange={(e) => handleChange(e)}
           className="input__field"
-          onBlur={() =>
-            cardDetails.expiry < 4 &&
-            setErrors((err) => [...err, { err: "Select a valid date!" }])
-          }
         />
         <input
+          onKeyPress={(event) => {
+            if (!/[0-9]/.test(event.key)) {
+              event.preventDefault()
+            }
+          }}
           onFocus={() => setFront((v) => !v)}
           name="CVC"
           maxLength="5"
@@ -75,12 +101,7 @@ const Fields = ({
           placeholder="CVC"
           className="input__field"
           onBlur={() => {
-            setFront(true);
-            cardDetails.CVC < 3 &&
-              setErrors((err) => [
-                ...err,
-                { err: "The CVC must be at least 3 numbers!" },
-              ]);
+            setFront(true)
           }}
         />
       </div>
@@ -88,7 +109,7 @@ const Fields = ({
         Save
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default Fields;
+export default Fields

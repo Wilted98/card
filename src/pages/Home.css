@@ -1,0 +1,25 @@
+.home__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: rgb(238, 174, 202);
+  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+.routes {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border: 1px solid #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: rgb(16, 126, 199);
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.routes:hover {
+  transform: scale(1.1);
+}

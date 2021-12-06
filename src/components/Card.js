@@ -1,55 +1,31 @@
-import React from "react";
-import chip from "../assets/chip.svg";
-import "./Card.css";
-import Fields from "./Fields";
-import { number, expiry, name } from "../utils/utils";
-import images from "../utils/images";
+import React from "react"
+import chip from "../assets/chip.svg"
+import "./Card.css"
+import Fields from "./Fields"
+import { number, expiry, name } from "../utils/utils"
+import images from "../utils/images"
 
-const Card = ({
-  cardDetails,
-  front,
-  type,
-  setFront,
-  setCardDetails,
-  setType,
-  errors,
-  setErrors,
-}) => {
+const Card = ({ cardDetails, front, type, setFront, setCardDetails, setType, errors, setErrors }) => {
   return (
     <div className="landing__page">
       <div className="card__fields--container">
         {/* Card Container */}
 
         <div className="card__container">
-          <div
-            className={`${!front && "flip__animation--card"} flip-card-inner`}
-          >
+          <div className={`${!front && "flip__animation--card"} flip-card-inner`}>
             {/* Front Card */}
-            <div
-              className={`${
-                type === "visa" ? "visa" : type === "master" && "master"
-              } flip-card-front `}
-            >
+            <div className={`${type === "visa" ? "visa" : type === "mastercard" && "mastercard"} flip-card-front `}>
               {/* Chip and Card Type Div */}
               <div className="space__around">
                 <div className="centered">
                   <img className="chip__img" src={chip} alt="chip" />
-                  <div className="credit-card--type">
-                    {type === "master" ? (
-                      <img src={images.mastercard} alt="master" />
-                    ) : (
-                      type === "visa" && <img src={images.visa} alt="visa" />
-                    )}
-                  </div>
+                  <div className="credit-card--type">{type === "mastercard" ? <img src={images.mastercard} alt="mastercard" /> : type === "visa" && <img src={images.visa} alt="visa" />}</div>
                 </div>
               </div>
               {/* Credit Card Number */}
               <div className="space__around">
                 <div className="centered">
-                  <span
-                    style={{ color: type && "#fff" }}
-                    className="card__number"
-                  >
+                  <span style={{ color: type && "#fff" }} className="card__number">
                     {number(cardDetails, setType)}
                   </span>
                 </div>
@@ -62,10 +38,7 @@ const Card = ({
                   </div>
                   <div className="validity__cont">
                     <span className="validity__text">valid thru</span>
-                    <span
-                      style={{ color: type && "#fff" }}
-                      className="validity__date"
-                    >
+                    <span style={{ color: type && "#fff" }} className="validity__date">
                       {expiry(cardDetails)}
                     </span>
                   </div>
@@ -73,11 +46,7 @@ const Card = ({
               </div>
             </div>
             {/* Back Card */}
-            <div
-              className={`${
-                type === "visa" ? "visa" : type === "master" && "master"
-              } flip-card-back `}
-            >
+            <div className={`${type === "visa" ? "visa" : type === "mastercard" && "mastercard"} flip-card-back `}>
               <div className="black__div" />
               <div className="cvc__container">
                 <span className="cvc__orange--line" />
@@ -95,27 +64,18 @@ const Card = ({
             {errors.map((arg, i) => {
               return (
                 <span key={i} className="error__span">
-                  * {arg.err}
+                  * {Object.values(arg)}
                 </span>
-              );
+              )
             })}
           </div>
         )}
 
-        {console.log(errors, "da")}
-
         {/* Fields Container */}
-        <Fields
-          setFront={setFront}
-          cardDetails={cardDetails}
-          setCardDetails={setCardDetails}
-          type={type}
-          errors={errors}
-          setErrors={setErrors}
-        />
+        <Fields setFront={setFront} cardDetails={cardDetails} setCardDetails={setCardDetails} type={type} errors={errors} setErrors={setErrors} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

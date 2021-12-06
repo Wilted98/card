@@ -16,11 +16,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
 }
 
-.two__fields--cont input {
-  margin-right: 1.5rem;
-  margin-left: 1.5rem;
+.two__fields--cont input:nth-child(1) {
+  margin-right: 3rem;
 }
 .input__field {
   border: none; /* <-- This thing here */
